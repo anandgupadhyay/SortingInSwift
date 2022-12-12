@@ -133,3 +133,28 @@ func combSort (input: [Int]) -> [Int] {
 
 combSort(input: array2)
 print("Sorted Array:\(array2)")
+
+//=========================
+//Insertion sort
+//Complexity O(n²)
+extension Array where Element: Comparable {
+        
+    func insertionSort(by areInIncreasingOrder: ((Element, Element) -> Bool) = (<)) -> [Element] {
+        var data = self
+        
+        for i in 1..<data.count { // 1
+            let key = data[i] // 2
+            var j = i - 1
+            
+            while j >= 0 && areInIncreasingOrder(key, data[j]) { // 3
+                data[j+1] = data[j] // 4
+                
+                j = j - 1
+            }
+            
+            data[j + 1] = key // 5
+        }
+        
+        return data
+    }
+}
