@@ -1,8 +1,14 @@
 import UIKit
-/***
- 
- ***/
 //Simple Bubble Sort
+
+/***
+ Runtime:
+ Average: O(N^2)
+ Worst: O(N^2)
+ Memory:
+ O(1)
+ ***/
+
 var greeting = "Hello, playground"
 public var array = [10,34,32,65,17,87,23,98,13,5,3,88,54,67,31,21,76,98,48,28,83,49,28,6,8,2]
 func swapTwoInts(_ a: inout Int, _ b: inout Int) {
@@ -51,7 +57,9 @@ struct Stack<Element> {
 
 //============================
 public var array1 = [10,34,32,65,17,87,23,98,13,5,3,88,54,67,31,21,76,98,48,28,83,49,28,6,8,2]
-
+/*
+ Time and space Complexity is always O(n log n) as the comlexity always depends on the length of an array
+ */
 
 //Merge Sort
 func mergeSort<T: Comparable>(_ array: [T]) -> [T] {
@@ -98,6 +106,8 @@ print("Merge Sort\(array1)")
 //====================
 public var array2 = [10,34,32,65,17,87,23,98,13,5,3,88,54,67,31,21,76,98,48,28,83,49,28,6,8,2]
 //Combo Sort
+//complexity Despite being based on the idea of a Bubble Sort the time complexity is just O(n log n), and space complexity for in-place sorting is O(1).
+
 
 func combSort (input: [Int]) -> [Int] {
     var copy: [Int] = input
