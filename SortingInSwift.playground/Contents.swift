@@ -319,3 +319,35 @@ if n >= 1 {fizzBuzz(n: 10)}
      }
      return result
  */
+
+
+//Sum of Integer Numbers
+
+func simpleArraySum(ar: [Int]) -> Int {
+    // Write your code here
+    let sum = ar.reduce(0,+)
+    return sum
+}
+
+print(simpleArraySum(ar: [1,2,3,4,5]))
+
+//Compare  tripplets
+let tuple1 = [4,2,3]
+let tuple2 = [2,4,1]
+//if tuple1.0 < tuple1.0 then
+//create a new tuple which denots comparioun point of 2 tuples
+var result: [Int] = [0,0]
+for i in 0..<tuple1.count
+{
+    if(tuple1[i]>tuple2[i]){
+        result[0]+=1
+    }else if (tuple1[i]<tuple2[i]){
+        result[1]+=1
+    }
+}
+
+print(result)
+
+
+
+
