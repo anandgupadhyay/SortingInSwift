@@ -323,31 +323,139 @@ if n >= 1 {fizzBuzz(n: 10)}
 
 //Sum of Integer Numbers
 
-func simpleArraySum(ar: [Int]) -> Int {
-    // Write your code here
-    let sum = ar.reduce(0,+)
-    return sum
-}
-
-print(simpleArraySum(ar: [1,2,3,4,5]))
+//func simpleArraySum(ar: [Int]) -> Int {
+//    // Write your code here
+//    let sum = ar.reduce(0,+)
+//    return sum
+//}
+//
+//print(simpleArraySum(ar: [1,2,3,4,5]))
 
 //Compare  tripplets
-let tuple1 = [4,2,3]
-let tuple2 = [2,4,1]
-//if tuple1.0 < tuple1.0 then
-//create a new tuple which denots comparioun point of 2 tuples
-var result: [Int] = [0,0]
-for i in 0..<tuple1.count
-{
-    if(tuple1[i]>tuple2[i]){
-        result[0]+=1
-    }else if (tuple1[i]<tuple2[i]){
-        result[1]+=1
+//let tuple1 = [4,2,3]
+//let tuple2 = [2,4,1]
+////if tuple1.0 < tuple1.0 then
+////create a new tuple which denots comparioun point of 2 tuples
+//var result: [Int] = [0,0]
+//for i in 0..<tuple1.count
+//{
+//    if(tuple1[i]>tuple2[i]){
+//        result[0]+=1
+//    }else if (tuple1[i]<tuple2[i]){
+//        result[1]+=1
+//    }
+//}
+//
+//print(result)
+
+//Diagonal Difference of Matrix
+//let matrixx: [[Int]] = [[3,0,0],[11,2,4],[4,5,6],[10,8,-12]]
+//print(matrixx)
+//var sum1 : Int = 0,sum2 : Int = 0
+//var maxLengthArray = (matrixx.compactMap { aray in
+//    aray.count
+//}).max()
+//print(Int(maxLengthArray!))
+//var j = maxLengthArray
+//
+//for i in 0..<matrixx.count {
+//    if matrixx[i].count==maxLengthArray! {
+//    print("i[\(i)][\(i)]:\(matrixx[i][i])")
+//    sum1+=matrixx[i][i]
+//        print("j[\(i)][\(j)]:\(matrixx[i][i-(matrixx[i].count)-1])")
+//    sum2+=matrixx[j][i-(matrixx[i].count)-1]
+//        j-=1
+//    }else{
+//
+//    }
+//}
+//let diff = abs(sum1-sum2)
+
+//func diagonalDifference(arr: [[Int]]) -> Int {
+//    // Write your code here
+//    let n =  arr.count
+//    var primaryDiagonalSum = 0
+//    var secondaryDiagonalSum = 0
+//    for index in 0..<n {
+//        primaryDiagonalSum   +=  arr[index][index]
+//        secondaryDiagonalSum +=  arr[index][n-index-1]
+//    }
+//    let difference = abs(primaryDiagonalSum - secondaryDiagonalSum)
+//    return difference
+//}
+//
+//print(diagonalDifference(arr: matrixx))
+
+// Ratio of Positive Negative and Zero
+
+let array = [-4, 3, -9, 0, 4, 1]//[1,1,0,-1,-1]
+let ratio = array.map{
+    if $0>0{
+        return "P"
+    }
+    else if $0<0{
+        return "N"
+    }
+    else{
+        return "O"
+    }
+} as [String]
+
+var histogram = ratio.reduce(into: [:]){ count,word in
+    count[word, default: 0]+=1
+}
+//print("Histogram:\(histogram)")
+
+var ordering: [Int] = Array(repeating: 0, count: 3)//next.map{$0.value}
+ordering[0] = histogram["P"] ?? 0
+ordering[1] = histogram["N"] ?? 0
+ordering[2] = histogram["O"] ?? 0
+
+
+var finalResult = ordering.map{Double(Double($0)/Double(array.count))}
+
+
+//var finalResult = ratio.reduce(into: [:]){ count,word in
+//count[word, default: 0]+=1
+//}.map{$0.value}.map{Double(Double($0)/Double(array.count))}
+
+extension Double {
+    var sizDigits: Double {
+        return (self * 1000000).rounded(.toNearestOrEven) / 1000000
     }
 }
+finalResult = finalResult.map{
+    $0.sizDigits
+}
 
-print(result)
+for number in finalResult{
+    print(String(format: "%.6f", number))
+}
+
+// Histogram
+//let arr = [1, 1, 0, -1, -1]// ["abcd", "abcd", "abc", "pqr", "abc"]
+//let counts = arr.reduce(into: [:]) { counts, word in counts[word, default: 0] += 1 }
+//print(counts)
 
 
+// Recursive function to convert decimal to binary
+func convertBinary(num: Int)->Int{
+   var StoreBinary:Int
+    
+   // Base condition
+   if (num != 0){
+      // Converting decimal to binary
+      StoreBinary = (num%2)+10*convertBinary(num: num/2)
+      return StoreBinary
+   }
+   else{
+      return 0
+   }
+}
 
+
+var decimalNum = 11
+
+print("Decimal number is: \(decimalNum)")
+print("Converted binary number is:\(convertBinary(num :decimalNum))")
 
