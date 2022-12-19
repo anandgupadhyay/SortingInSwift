@@ -386,76 +386,80 @@ if n >= 1 {fizzBuzz(n: 10)}
 //
 //print(diagonalDifference(arr: matrixx))
 
+//= = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+
+
 // Ratio of Positive Negative and Zero
 
-let array = [-4, 3, -9, 0, 4, 1]//[1,1,0,-1,-1]
-let ratio = array.map{
-    if $0>0{
-        return "P"
-    }
-    else if $0<0{
-        return "N"
-    }
-    else{
-        return "O"
-    }
-} as [String]
+//let array = [-4, 3, -9, 0, 4, 1]//[1,1,0,-1,-1]
+//let ratio = array.map{
+//    if $0>0{
+//        return "P"
+//    }
+//    else if $0<0{
+//        return "N"
+//    }
+//    else{
+//        return "O"
+//    }
+//} as [String]
+//
+//let histogram = ratio.reduce(into: [:]){ count,word in
+//    count[word, default: 0]+=1
+//}
+//
+//var ordering: [Int] = Array(repeating: 0, count: 3)//next.map{$0.value}
+//ordering[0] = histogram["P"] ?? 0
+//ordering[1] = histogram["N"] ?? 0
+//ordering[2] = histogram["O"] ?? 0
+//var finalResult = ordering.map{Double(Double($0)/Double(array.count))}
+//
+//extension Double {
+//    var sizDigits: Double {
+//        return (self * 1000000).rounded(.toNearestOrEven) / 1000000
+//    }
+//}
+//finalResult = finalResult.map{
+//    $0.sizDigits
+//}
+//
+//for number in finalResult{
+//    print(String(format: "%.6f", number))
+//}
 
-var histogram = ratio.reduce(into: [:]){ count,word in
-    count[word, default: 0]+=1
-}
-//print("Histogram:\(histogram)")
-
-var ordering: [Int] = Array(repeating: 0, count: 3)//next.map{$0.value}
-ordering[0] = histogram["P"] ?? 0
-ordering[1] = histogram["N"] ?? 0
-ordering[2] = histogram["O"] ?? 0
-
-
-var finalResult = ordering.map{Double(Double($0)/Double(array.count))}
-
-
-//var finalResult = ratio.reduce(into: [:]){ count,word in
-//count[word, default: 0]+=1
-//}.map{$0.value}.map{Double(Double($0)/Double(array.count))}
-
-extension Double {
-    var sizDigits: Double {
-        return (self * 1000000).rounded(.toNearestOrEven) / 1000000
-    }
-}
-finalResult = finalResult.map{
-    $0.sizDigits
-}
-
-for number in finalResult{
-    print(String(format: "%.6f", number))
-}
+//= = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 
 // Histogram
 //let arr = [1, 1, 0, -1, -1]// ["abcd", "abcd", "abc", "pqr", "abc"]
 //let counts = arr.reduce(into: [:]) { counts, word in counts[word, default: 0] += 1 }
 //print(counts)
 
-
+//= = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 // Recursive function to convert decimal to binary
-func convertBinary(num: Int)->Int{
-   var StoreBinary:Int
-    
-   // Base condition
-   if (num != 0){
-      // Converting decimal to binary
-      StoreBinary = (num%2)+10*convertBinary(num: num/2)
-      return StoreBinary
-   }
-   else{
-      return 0
-   }
-}
+//func convertBinary(num: Int)->Int{
+//   var StoreBinary:Int
+//
+//   // Base condition
+//   if (num != 0){
+//      // Converting decimal to binary
+//      StoreBinary = (num%2)+10*convertBinary(num: num/2)
+//      return StoreBinary
+//   }
+//   else{
+//      return 0
+//   }
+//}
+//
+//
+//var decimalNum = 11
+//
+//print("Decimal number is: \(decimalNum)")
+//print("Converted binary number is:\(convertBinary(num :decimalNum))")
+
+//= = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 
 
-var decimalNum = 11
 
-print("Decimal number is: \(decimalNum)")
-print("Converted binary number is:\(convertBinary(num :decimalNum))")
+//= = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 
+print("Anand Upadhyay")
