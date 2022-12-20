@@ -458,8 +458,189 @@ if n >= 1 {fizzBuzz(n: 10)}
 
 //= = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 
+// staircase Pattern
+/*
+     #
+    ##
+   ###
+  ####
+ #####
+######
+
+let n = 6
+//stride(from:n-1,through:0,by:-1)
+var str = ""
+for i in 0..<n{
+    var str1 = ""
+    for j in 1..<n{
+        if(j>(n-i-1)){
+            str1+="#"
+        }
+        else{
+            str1+=" "
+        }
+    }
+    str1+="#"
+    if i != n {
+        str1+="\n"
+    }
+    str+=str1
+}
+print(str, terminator: "")
+print("/n")
+
+
+
+ //stride(from:n-1,through:0,by:-1)
+ for i in 0..<n+1{
+     var str = ""
+     for j in 0..<n{
+         if(j>(n-i-1)){
+             str+="# "
+         }
+         else{
+             str+=" "
+         }
+     }
+     str+="#"
+     print(str)
+ }
+ 
+      #
+     # #
+    # # #
+   # # # #
+  # # # # #
+ # # # # # #
+ 
+
+#
+##
+###
+####
+#####
+######
+Expected Output
+
+Download
+#
+##
+###
+####
+#####
+######
 
 
 //= = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 
-print("Anand Upadhyay")
+ //Min  Max Sum
+//arr [1,2,3,4,5]
+//The minimum sum is  and the maximum sum is . The function prints
+//Output - "10 14"
+var arr = [1,2,3,4,5]
+var arrSum: [Int] = Array(repeating: 0, count: arr.count)
+for i in 0..<arr.count{
+    for j in 0..<arr.count{
+        if j != i{
+            arrSum[i] += arr[j]
+//            print(arr[j])
+        }
+    }
+//    print("------")
+}
+
+print("\(arrSum.min()!) \(arrSum.max()!)")
+//0 14
+    
+ */
+
+//= = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+
+//Birthday Cacke Candles
+//You are in charge of the cake for a child's birthday. You have decided the cake will have one candle for each year of their total age. They will only be able to blow out the tallest of the candles. Count how many candles are tallest.
+//Input - arr = [4,4,1,2]
+// output -2
+//The maximum height candles are 4  units high. There are 2 of them, so return 2.
+
+//let arr = [4,4,1,2]
+//
+//func birthdayCakeCandles(candles: [Int]) -> Int {
+//    // Write your code here
+//    let finCount = candles.reduce(into: [:]) { count,number in
+//        return count[number, default:0]+=1
+//    }
+//
+//    let result = finCount[candles.max()!]
+//    return result! as Int
+//}
+//
+//print(birthdayCakeCandles(candles: arr))
+
+
+//= = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+
+//12 Hour to 24 Hour AM PM conversion
+//input -  12:01:00PM
+//output - 12:01:00
+//input -  12:01:00AM
+//output - 00:01:00
+//input -  01:01:00PM
+//output - 13:01:00
+
+//var date: String = "03:01:00AM"
+//func sliceString(str: String, start: Int, end: Int) -> String {
+//    let data = Array(str)
+//    return String(data[start..<end])
+//}
+//
+//if(date.count==10){
+//    date = date.uppercased()
+//    var hh: Int = Int(date.prefix(2))!
+//    if date.hasSuffix("PM"){
+//
+//        if hh>=1 && hh<=11 {
+//            hh += 12
+//        }
+//    }else{
+//        if hh==12 {
+//            hh = 00
+//        }
+//    }
+//
+//    print("24 Hour - \(String(format: "%02d", hh)):\(sliceString(str:date, start: 3,end : date.count-2))")
+//}
+
+
+//= = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+
+
+////Search in Array
+//let works = ["foo", "bar"].first(where: { ($0 == "foo") } )
+//
+//print(works!)
+
+//array aare value type
+//var arr = [1,2,3,4]
+//var bar = arr
+//bar[0]=2
+//print("\(arr)\n\(bar)")
+
+//= = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+
+//Random generation
+//print(arc4random())
+//print(arc4random_uniform(10))
+//print(drand48())
+
+//= = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+
+
+
+//= = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+
+
+print("\n--------------\nAnand Upadhyay\n--------------\n")
+
+
+
+
