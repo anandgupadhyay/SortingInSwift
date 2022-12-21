@@ -634,10 +634,148 @@ print("\(arrSum.min()!) \(arrSum.max()!)")
 
 //= = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 
+//Merge Sort
+func customMergeSort(array: [Int]) -> [Int] {
+    guard array.count > 1 else { return array } // Mark 1
+    
+    let middlePointer = array.count/2 // Mark 2
+    
+    let left = customMergeSort(array: Array(array[0..<middlePointer])) // Mark 3
+    let right = customMergeSort(array: Array(array[middlePointer..<array.count])) // Mark 3
+    return mergeArrays(left,right) // Mark 4
+}
+
+func mergeArrays(_ left: [Int],_ right: [Int]) -> [Int] {
+    var leftIndex = 0
+    var rightIndex = 0
+    var result = [Int]()
+    
+    while leftIndex < left.count && rightIndex < right.count {
+        if left[leftIndex] < right[rightIndex] {
+            result.append(left[leftIndex])
+            leftIndex += 1
+        } else if left[leftIndex] > right[rightIndex] {
+            result.append(right[rightIndex])
+            rightIndex += 1
+        } else {
+            result.append(left[leftIndex])
+            result.append(right[rightIndex])
+            leftIndex += 1
+            rightIndex += 1
+        }
+    }
+    
+    while leftIndex < left.count {
+        result.append(left[leftIndex])
+        leftIndex += 1
+    }
+    
+    while rightIndex < right.count {
+        result.append(right[rightIndex])
+        rightIndex += 1
+    }
+    
+    return result
+}
+
+let testMikeAndPepijnArray = [1,11,123,23,2,5,64,546,45,989,9084,312,645,66,7,33,55,77,7,8,88,2,4]
+//print(customMergeSort(array: testMikeAndPepijnArray))
+
+let arr1 = [1,5,3,6]
+let arr2 = [2,4,6,8]
+
+print(mergeArrays(arr1, arr2))
+print("= = = = = = = = = = ")
+    
+//= = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+//Bubble Sort
+var data_set = [1,3,6,2,4,5]
+var last_position = data_set.count - 1
+var swap = true
+while swap == true {
+    swap = false
+    for i in 0..<last_position {
+        if data_set[i] > data_set[i + 1] {
+            let temp = data_set [i + 1]
+            data_set [i + 1] = data_set[i]
+            data_set[i] = temp
+            
+            swap = true
+        }
+    }
+}
+print(data_set)
+
+//= = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+
+//Email validataion
+private func validate(email: String?) -> Bool {
+        guard let email = email else { return false }
+        let regex = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-za-z]{2,64}"
+        let pred = NSPredicate(format: "SELF MATCHES %@", regex)
+        return pred.evaluate(with: email)
+    }
 
 
 //= = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 
+//property wrapper
+@propertyWrapper
+struct Scores {
+    private let minValue = 0
+    private let maxValue = 100
+    private var value: Int
+    init(wrappedValue value: Int){
+        self.value = value
+    }
+    var wrappedValue: Int {
+        get {
+            return max(min(value, maxValue), minValue)
+        }
+        set {
+            value = newValue
+        }
+    }
+}
+
+//@Scores var scores: Int = 0
+//Property wrappers are not yet supported in top-level code
+//Generic
+@propertyWrapper
+struct Constrained<Value: Comparable> {
+    private var range: ClosedRange<Value>
+    private var value: Value
+    init(wrappedValue value: Value, _ range: ClosedRange<Value>) {
+        self.value = value
+        self.range = range
+    }
+    var wrappedValue: Value {
+        get {
+            return max(min(value, range.upperBound), range.lowerBound)
+        }
+        set {
+            value = newValue
+        }
+    }
+}
+//@Constrained(0...100)
+//var scores: Int = 0
+
+
+//= = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+
+//cellcious to fahrenheit
+struct Celsius {
+    var temperatureInCelsius: Double
+    init(fromFahrenheit fahrenheit: Double) {
+        temperatureInCelsius = (fahrenheit - 32.0) / 1.8
+    }
+    init(fromKelvin kelvin: Double) {
+        temperatureInCelsius = kelvin - 273.15
+    }
+}
+
+//= = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 
 print("\n--------------\nAnand Upadhyay\n--------------\n")
 
