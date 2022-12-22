@@ -741,23 +741,23 @@ struct Scores {
 //@Scores var scores: Int = 0
 //Property wrappers are not yet supported in top-level code
 //Generic
-@propertyWrapper
-struct Constrained<Value: Comparable> {
-    private var range: ClosedRange<Value>
-    private var value: Value
-    init(wrappedValue value: Value, _ range: ClosedRange<Value>) {
-        self.value = value
-        self.range = range
-    }
-    var wrappedValue: Value {
-        get {
-            return max(min(value, range.upperBound), range.lowerBound)
-        }
-        set {
-            value = newValue
-        }
-    }
-}
+//@propertyWrapper
+//struct Constrained<Value: Comparable> {
+//    private var range: ClosedRange<Value>
+//    private var value: Value
+//    init(wrappedValue value: Value, _ range: ClosedRange<Value>) {
+//        self.value = value
+//        self.range = range
+//    }
+//    var wrappedValue: Value {
+//        get {
+//            return max(min(value, range.upperBound), range.lowerBound)
+//        }
+//        set {
+//            value = newValue
+//        }
+//    }
+//}
 //@Constrained(0...100)
 //var scores: Int = 0
 
@@ -864,16 +864,248 @@ else {
 
 
 //= = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+//struct vs class vs enum
+//struct Cat {
+//   private var vaccinated:Bool
+//   init() {
+//      self.init()
+//   }
+//   // Will not work without mutating keyword
+//   mutating func vaccinate() {
+//      self.vaccinated = true
+//   }
+//}
+//var cat1 = Cat()
+//cat1.vaccinate()
+//
+//struct Cat {
+//   var name:String
+//   deinit {
+//   }
+//}
+//// Compiler Error : Deinitializers may only be declared within a class
+//struct Cat {
+//var name:String
+//var age:Int
+//}
+//let cat1 = Cat(name: "Lucy", age: 3)
+//
+//struct Pet {
+//     var name:String
+//}
+//struct Cat : Pet {
+//}
+//// ERROR : Inheritance from non-protocol type 'Pet'
+//
+//enum Pet {
+//
+//    var name:String
+////  error: enums must not contain stored properties
+//}
+//
+//
+//
+//struct Cat {
+//var name:String
+//}
+//var cat1 = Cat(name: "Kitty")
+//var cat2 = cat1
+//cat1.name = "Oscar"
+//print("cat1 name : \(cat1.name), cat2 name : \(cat2.name)")
 
+//= = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+
+//Property wrapper
+@propertyWrapper
+struct Constrained<Value: Comparable> {
+    private var range: ClosedRange<Value>
+    private var value: Value
+    init(wrappedValue value: Value, _ range: ClosedRange<Value>) {
+        self.value = value
+        self.range = range
+    }
+    var wrappedValue: Value {
+        get {
+            return max(min(value, range.upperBound), range.lowerBound)
+        }
+        set {
+            value = newValue
+        }
+    }
+}
+
+//property wrapper with Equatable
+@propertyWrapper
+struct Email<Value: StringProtocol> {
+    var value: Value?
+    init(wrappedValue value: Value?) {
+        self.value = value
+    }
+    var wrappedValue: Value? {
+        get {
+            return validate(email: value) ? value : nil
+        }
+        set {
+            value = newValue
+        }
+    }
+    
+    private func validate(email: Value?) -> Bool {
+        guard let email = email else { return false }
+        let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
+        let emailPred = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
+        return emailPred.evaluate(with: email)
+    }
+}
+
+extension Email: Equatable {
+    static func ==(lhs: Email, rhs: Email) -> Bool {
+     return lhs.wrappedValue?.lowercased() == rhs.wrappedValue?.lowercased()
+    }
+}
+
+struct Account {
+    var firstName: String
+    var lastName: String
+    @Email
+    var email: String?
+}
+
+extension Account: Equatable {
+    static func ==(lhs: Account, rhs: Account) -> Bool {
+     return lhs._email == rhs._email
+    }
+}
+
+let account = Account(firstName: "Test",
+                      lastName: "Test",
+                      email: "test@test.com")
+
+account.email // Wrapped value (String)
+//account._email // Wrapper(Email<String>)
+//'_email' is inaccessible due to 'private' protection level
+
+//Publisher
+
+//@Published
+//var message: String
+////Property wrappers are not yet supported in top-level code
+//
+//print(message) // Print the wrapped value
+//$message.sink { print($0) } // Subscribe to the publisher
+//
+//
+//@propertyWrapper
+//struct Published<Value> {
+//    private let subject = PassthroughSubject<Value, Never>()
+//    var wrappedValue: Value {
+//    didSet {
+//        subject.send(wrappedValue)
+//    }
+//    }
+//    var projectedValue: AnyPublisher<Value, Never> {
+//    subject.eraseToAnyPublisher()
+//    }
+//}
+
+
+//= = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+
+// Async
+func fetchImages() async throws -> [UIImage] {
+    // .. perform data request
+}
+//async replaced by clouser
+func fetchImages(completion: (Result<[UIImage], Error>) -> Void) {
+    // .. perform data request
+}
+
+//Await
+do {
+    let images = try await fetchImages()
+    print("Fetched \(images.count) images.")
+} catch {
+    print("Fetching images failed with error \(error)")
+}
+
+
+//un structurred concurrency
+// 1. Call the method
+fetchImages { result in
+    // 3. The asynchronous method returns
+    switch result {
+    case .success(let images):
+        print("Fetched \(images.count) images.")
+        
+        // 4. Call the resize method
+        resizeImages(images) { result in
+            // 6. Resize method returns
+            switch result {
+            case .success(let images):
+                print("Decoded \(images.count) images.")
+            case .failure(let error):
+                print("Decoding images failed with error \(error)")
+            }
+        }
+        // 5. Fetch images method returns
+    case .failure(let error):
+        print("Fetching images failed with error \(error)")
+    }
+}
+// 2. The calling method exits
+
+
+//structured concurrency
+
+do {
+    // 1. Call the method
+    let images = try await fetchImages()
+    // 2. Fetch images method returns
+    
+    // 3. Call the resize method
+    let resizedImages = try await resizeImages(images)
+    // 4. Resize method returns
+    
+    print("Fetched \(images.count) images.")
+} catch {
+    print("Fetching images failed with error \(error)")
+}
+//= = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+
+//More sophisticated way
+final class ContentViewModel: ObservableObject {
+    
+    @Published var images: [UIImage] = []
+    
+    func fetchData() {
+        Task.init {
+            do {
+                self.images = try await fetchImages()
+            } catch {
+                // .. handle error
+            }
+        }
+    }
+}
+
+//Async s
+struct ImageFetcher {
+    @available(*, renamed: "fetchImages()")
+    func fetchImages(completion: @escaping (Result<[UIImage], Error>) -> Void) {
+        Task {
+            do {
+                let result = try await fetchImages()
+                completion(.success(result))
+            } catch {
+                completion(.failure(error))
+            }
+        }
+    }
+
+
+    func fetchImages() async throws -> [UIImage] {
+        // .. perform data request
+    }
+}
 
 print("\n--------------\nAnand Upadhyay\n--------------\n")
-
-
-struct Cat {
-var name:String
-}
-var cat1 = Cat(name: "Kitty")
-var cat2 = cat1
-cat1.name = "Oscar"
-print("cat1 name : \(cat1.name), cat2 name : \(cat2.name)")
-
