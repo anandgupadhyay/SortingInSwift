@@ -777,8 +777,103 @@ struct Celsius {
 
 //= = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 
+//Iteraing over sets
+let fruits: Set = ["Apple", "Peach", "Mango"]
+
+print("Fruits:")
+
+// for loop to access each fruits
+for fruit in fruits {
+  print(fruit)
+}
+
+
+//union
+// first set
+let setA: Set = [1, 3, 5]
+print("Set A: ", setA)
+
+// second set
+let setB: Set = [0, 2, 4]
+print("Set B: ", setB)
+
+// perform union operation
+print("Union: ", setA.union(setB))
+
+//intersection
+// first set
+let setAA: Set = [1, 3, 5]
+print("Set A: ",  setAA)
+
+// second set
+let setBB: Set = [1, 2, 3]
+print("Set B: ",  setBB)
+
+// perform intersection operation
+print("Intersection: ", setAA.intersection(setBB))
+
+//subtracting
+
+// first set
+let setAAA: Set = [2, 3, 5]
+print("Set A: ",  setAAA)
+
+// second set
+let setBBB: Set = [1, 2, 6]
+print("Set B: ",  setBBB)
+
+// perform subtraction operation
+print("Subtraction: ", setAAA.subtracting(setBBB))
+
+//symmetricDifference
+
+// first set
+let setA4: Set = [2, 3, 5]
+print("Set A: ",  setA4)
+
+// second set
+let setB4: Set = [1, 2, 6]
+print("Set B: ",  setB4)
+
+// perform symmetric difference operation
+print("Symmetric Difference: ", setA4.symmetricDifference(setB4))
+
+// is Subset
+// first set
+let setA5: Set = [1, 2, 3, 5, 4]
+print("Set A: ",  setA5)
+
+// second set
+let setB5: Set = [1, 2]
+print("Set B: ",  setB5)
+
+// check if setB is subset of setA or not
+print("Subset: ", setB5.isSubset(of: setA5))
+
+//Check if two sets are equal
+
+let setA6: Set = [1, 3, 5]
+let setB6: Set = [3, 5, 1]
+
+if setA6 == setB6 {
+  print("Set A and Set B are equal")
+}
+else {
+  print("Set A and Set B are different")
+}
+
+
+//= = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+
+
 print("\n--------------\nAnand Upadhyay\n--------------\n")
 
 
-
+struct Cat {
+var name:String
+}
+var cat1 = Cat(name: "Kitty")
+var cat2 = cat1
+cat1.name = "Oscar"
+print("cat1 name : \(cat1.name), cat2 name : \(cat2.name)")
 
