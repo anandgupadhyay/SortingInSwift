@@ -1125,6 +1125,7 @@
 
 //= = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 
+//[Any] to [Int] or [String]
 func findEvenSquares(array: [Any])-> [Int]
 {
     let  newArray: [Int] = array.compactMap{
@@ -1147,16 +1148,13 @@ func findEvenSquares(array: [Any])-> [Int]
          }
  
  //include all strig which can be converted to Int
- var newArray = [Int]()
-     for item in array{
-         if let str = item as? String  {
-             if let i = Int(str){
-                 newArray.append(i)
-             }
-         }else if let i  = item as? Int{
-             newArray.append(i)
-         }
+ let  newArray: [Int] = array.compactMap{
+     if let str = $0 as? String {
+        return Int(str)
+     }else {
+         return $0 as? Int
      }
+ }
  */
 
 let array: [Any] = [1,"2",3,"a",4,5,6,"b",9.0,12.5]
