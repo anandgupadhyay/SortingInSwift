@@ -1,3 +1,4 @@
+import Darwin
 ////import UIKit
 ////////Simple Bubble Sort
 //////
@@ -1126,17 +1127,17 @@
 //= = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 
 //[Any] to [Int] or [String]
-func findEvenSquares(array: [Any])-> [Int]
-{
-    let  newArray: [Int] = array.compactMap{
-        if let str = $0 as? String {
-           return Int(str)
-        }else {
-            return $0 as? Int
-        }
-    }
-    return newArray
-}
+//func findEvenSquares(array: [Any])-> [Int]
+//{
+//    let  newArray: [Int] = array.compactMap{
+//        if let str = $0 as? String {
+//           return Int(str)
+//        }else {
+//            return $0 as? Int
+//        }
+//    }
+//    return newArray
+//}
 
 /*
  //exlude any string even "2"
@@ -1157,11 +1158,73 @@ func findEvenSquares(array: [Any])-> [Int]
  }
  */
 
-let array: [Any] = [1,"2",3,"a",4,5,6,"b",9.0,12.5]
-print("Squares:\(findEvenSquares(array: array))")
+//let array: [Any] = [1,"2",3,"a",4,5,6,"b",9.0,12.5]
+//print("Squares:\(findEvenSquares(array: array))")
 
 
 //= = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+
+//Kangaroo jump
+//let x1 = 4
+//let v1 = 2
+//let x2 = 0
+//let v2 = 3
+//
+//if x1<x2 && v1<v2 {
+//    print("NO")
+//}else if v1 != v2 && ((x2-x1)%(v2-v1) == 0){
+//    print("YES")
+//}else{
+//    print("NO")
+//}
+
+//= = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+
+//Break the record
+//let scores = [10,10,6,20,50]//[10, 5, 20, 20, 4, 5, 2, 25, 1]
+//var mincount = 0 , maxcount = 0
+//var minScore = scores[0]
+//var maxScore = scores[0]
+//for i in 1...scores.count-1{
+//    if(scores[i]<minScore){
+//        minScore = scores[i]
+//        mincount+=1
+//    }
+//    if(scores[i]>maxScore){
+//        maxScore = scores[i]
+//        maxcount+=1
+//    }
+//}
+//print("\(maxcount) \(mincount)")
+
+
+//= = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+
+//Sub array division
+func birthday(s: [Int], d: Int, m: Int) -> Int {
+    var count = 0
+    for (i, _) in s[0...s.count-m].enumerated() {
+        var sum = 0
+        for j in 0..<m {
+            sum += s[i+j]
+        }
+        if sum == d {
+            count += 1
+        }
+    }
+    return count
+}
+
+print(birthday(s: [1,2,1,3,2], d: 3, m: 2))
+
+//= = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+//Array Slice
+//let arr = [10,20,30,40,50]
+//let slicedArray = arr[1...3]
+//print("Slice:\(slicedArray)")
+//let arrayOfInts = Array(slicedArray)
+//print("Normal:\(arrayOfInts)")
+
 
 print("\n--------------\nAnand Upadhyay\n--------------\n")
 
