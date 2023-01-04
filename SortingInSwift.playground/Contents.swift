@@ -1201,21 +1201,21 @@ import Darwin
 //= = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 
 //Sub array division
-func birthday(s: [Int], d: Int, m: Int) -> Int {
-    var count = 0
-    for (i, _) in s[0...s.count-m].enumerated() {
-        var sum = 0
-        for j in 0..<m {
-            sum += s[i+j]
-        }
-        if sum == d {
-            count += 1
-        }
-    }
-    return count
-}
-
-print(birthday(s: [1,2,1,3,2], d: 3, m: 2))
+//func birthday(s: [Int], d: Int, m: Int) -> Int {
+//    var count = 0
+//    for (i, _) in s[0...s.count-m].enumerated() {
+//        var sum = 0
+//        for j in 0..<m {
+//            sum += s[i+j]
+//        }
+//        if sum == d {
+//            count += 1
+//        }
+//    }
+//    return count
+//}
+//
+//print(birthday(s: [1,2,1,3,2], d: 3, m: 2))
 
 //= = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 //Array Slice
@@ -1225,8 +1225,129 @@ print(birthday(s: [1,2,1,3,2], d: 3, m: 2))
 //let arrayOfInts = Array(slicedArray)
 //print("Normal:\(arrayOfInts)")
 
+//= = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+
+//sum of multiples of 3 or 5 upto n number
+let number = 10-1
+//////number of multiples
+//var totlaMultiple3 = number/3 + number/5 - number/15
+func findSum(n :Int,multiple:Int)->Int{
+    let M = (n - n % multiple) / multiple
+    print("M:\(M)")
+    let sum = multiple * (M * (M+1) / 2)
+    print("Sum:\(sum)")
+    return sum
+}
+
+
+let sum1 = findSum(n: number, multiple: 3)
+let sum2 = findSum(n: number, multiple: 5)
+let sum3 = findSum(n: number, multiple: 15)
+
+
+let sum = sum1 + sum2 - sum3
+print("Finla:\(sum)")
+
+
+
+//let n = 10
+//let arrayof3: [Int] = Array(stride(from: 3, through: n-1, by: 3))
+//let setof3 = Set(arrayof3)
+//
+//let arrayof5: [Int] = Array(stride(from: 5, through: n-1, by: 5))
+//let setof5 = Set(arrayof5)
+//
+//let arrayof15: [Int] = Array(stride(from: 15, through: n-1, by:15))
+//let setof15 = Set(arrayof15)
+//
+//let finalSet = setof3.union(setof5).union(setof15)
+//let finalArray = Array(finalSet)
+//
+//print(finalArray.reduce(0,+))
+
+////let arrayof3: [Int] = Array(stride(from: 3, through: n, by: 3))
+//print("Final Array:\(finalArray)")
+
+
+
+
+
+
+
+
+
+//
+//print("Sum of Multiples of 3 or 5 upto \(number):\(sum)")
+
+//let n = 100
+//let M3 = (n - n % 3) / 3
+//let Sum3 = 3 * (M3 * (M3+1) / 2)
+//
+//let M5 = (n - n % 5) / 5
+//let Sum5 = 5 * (M5 * (M5-1) / 2)
+//
+//let M15 = (n - n % 15) / 15
+//let Sum15 = 15 * (M15 * (M15+1) / 2)
+//
+//print(Sum3+Sum5-Sum15)
+
+//let m = Int(floor(Double(10/3)))
+//let ans = 3 * ((m*(m+1))/2)
+//print(ans)
+
+
+
+
+
+
+
+
+
+
+
+
+//let n = 15
+//var totlaMultiple = n/3
+//totlaMultiple = totlaMultiple + n/5
+//totlaMultiple = totlaMultiple - n/15
+//print("Number of Multiples of 3 or 5 upto \(n):\(totlaMultiple)")
+
+
+
+//= = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+
+//func anagramChecker(a:String,b:String) -> (Bool,Int,[Character]) {
+//      let aCharacters = Array(a)
+//      let bCharacters = Array(b)
+//      var count = 0
+//      var isAnagram = true
+//      var replacementRequiredWords:[Character] = [Character]()
+//      if aCharacters.count == bCharacters.count {
+//          let listA = aCharacters.filter { !bCharacters.contains($0) }
+//          for i in 0 ..< listA.count {
+//              if !replacementRequiredWords.contains(listA[i]) {
+//                  count = count + 1
+//                  replacementRequiredWords.append(listA[i])
+//                  isAnagram = false
+//              }
+//          }
+//          let listB = bCharacters.filter { !aCharacters.contains($0) }
+//          for i in 0 ..< listB.count {
+//              if !replacementRequiredWords.contains(listB[i]) {
+//                  count = count + 1
+//                  replacementRequiredWords.append(listB[i])
+//                   isAnagram = false
+//              }
+//          }
+//      }else{
+//          //cant be an anagram
+//          count = -1
+//      }
+//       return (isAnagram,count,replacementRequiredWords)
+//  }
+//
+//
+//print(anagramChecker(a: "Anand", b: "Anand"))
 
 print("\n--------------\nAnand Upadhyay\n--------------\n")
-
-
 
