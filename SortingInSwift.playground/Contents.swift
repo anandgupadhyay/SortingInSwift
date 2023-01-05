@@ -1,4 +1,5 @@
 import Darwin
+import Foundation
 ////import UIKit
 ////////Simple Bubble Sort
 //////
@@ -1228,28 +1229,21 @@ import Darwin
 //= = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 
 //sum of multiples of 3 or 5 upto n number
-let number = 10-1
-//////number of multiples
-//var totlaMultiple3 = number/3 + number/5 - number/15
-func findSum(n :Int,multiple:Int)->Int{
-    let M = (n - n % multiple) / multiple
-    print("M:\(M)")
-    let sum = multiple * (M * (M+1) / 2)
-    print("Sum:\(sum)")
-    return sum
-}
+//let number = 10-1
+////var totlaMultiple3 = number/3 + number/5 - number/15
+//func findSum(n :Int,multiple:Int)->Int{
+//    let M = (n - n % multiple) / multiple
+//    let sum = multiple * (M * (M+1) / 2)
+//    return sum
+//}
+//let sum1 = findSum(n: number, multiple: 3)
+//let sum2 = findSum(n: number, multiple: 5)
+//let sum3 = findSum(n: number, multiple: 15)
+//let sum = sum1 + sum2 - sum3
+//print("Finla:\(sum)")
 
 
-let sum1 = findSum(n: number, multiple: 3)
-let sum2 = findSum(n: number, multiple: 5)
-let sum3 = findSum(n: number, multiple: 15)
-
-
-let sum = sum1 + sum2 - sum3
-print("Finla:\(sum)")
-
-
-
+//Solution using array set
 //let n = 10
 //let arrayof3: [Int] = Array(stride(from: 3, through: n-1, by: 3))
 //let setof3 = Set(arrayof3)
@@ -1268,51 +1262,11 @@ print("Finla:\(sum)")
 ////let arrayof3: [Int] = Array(stride(from: 3, through: n, by: 3))
 //print("Final Array:\(finalArray)")
 
-
-
-
-
-
-
-
-
-//
-//print("Sum of Multiples of 3 or 5 upto \(number):\(sum)")
-
-//let n = 100
-//let M3 = (n - n % 3) / 3
-//let Sum3 = 3 * (M3 * (M3+1) / 2)
-//
-//let M5 = (n - n % 5) / 5
-//let Sum5 = 5 * (M5 * (M5-1) / 2)
-//
-//let M15 = (n - n % 15) / 15
-//let Sum15 = 15 * (M15 * (M15+1) / 2)
-//
-//print(Sum3+Sum5-Sum15)
-
-//let m = Int(floor(Double(10/3)))
-//let ans = 3 * ((m*(m+1))/2)
-//print(ans)
-
-
-
-
-
-
-
-
-
-
-
-
 //let n = 15
 //var totlaMultiple = n/3
 //totlaMultiple = totlaMultiple + n/5
 //totlaMultiple = totlaMultiple - n/15
 //print("Number of Multiples of 3 or 5 upto \(n):\(totlaMultiple)")
-
-
 
 //= = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 
@@ -1349,5 +1303,193 @@ print("Finla:\(sum)")
 //
 //print(anagramChecker(a: "Anand", b: "Anand"))
 
+//= = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+// Migratory birds
+
+//func migratoryBirds(arr: [Int]) -> Int {
+    // Write your code here
+//var maxCount = 0
+//var result = 0
+//var tempArray = Array(repeating: 0, count: arr.count)
+//    for i in arr {
+//    tempArray[i] += 1
+//    }
+//    print (tempArray)
+//
+//for i in 0..<arr.count {
+//  if tempArray[i] > maxCount {
+//    maxCount = tempArray[i]
+//    result = i
+//  }
+//}
+//return result
+//}
+//
+//print(migratoryBirds(arr: [1,4,4,4,2,3,2,2,3,3]))
+//Migratory birds with Higher order functions
+//let array = [1,4,4,7,1,4,4,2,5,3,2,2,3,3]
+//var newArray = array.reduce(into: [:]) { count, id in
+//    return count[id,default: 0]+=1
+//}.sorted{ $0.1 > $1.1 }
+//
+//let max = newArray.map{$0.value}.max()!
+//newArray = newArray.filter{$0.value == max}
+//print(newArray.map{$0.key}.min()!)
+
+//= = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+//func fib(_ n: Int) -> Int { return n < 2 ? n : (fib(n-1) + fib(n-2)) }
+//print("Fibonacci:\(fib(3))")
+
+//func find_sum(_ N: Int)->Int
+//    {
+//        var one = 2
+//        var two = 8
+//        var temp = 0
+//        var sum = 0
+//        while one < N
+//        {
+//            sum += one
+//            temp = two
+//            two = 4 * two + one
+//            one = temp
+//         }
+//         return sum
+//    }
+//
+//let n = 100
+//print(find_sum(n))
+
+//for i in [10,100]{
+//let sequence = Array(stride(from: 3, to: 10, by: 3))
+//let fibSeq = sequence.map{fib($0)}
+//print(fibSeq.reduce(0,+))
+//}
+
+
+//= = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+
+//runThisInMainThread { () -> Void in
+//    runThisInMainThread { () -> Void in
+//        // No problem
+//    }
+//}
+//
+//func runThisInMainThread(block: dispatch_block_t) {
+//    dispatch_async(dispatch_get_main_queue(), block)
+//}
+
+//= = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+
+//func daysBetween(start: Date, end: Date) -> Int {
+//        return Calendar.current.dateComponents([.day], from: start, to: end).day!
+//    }
+
+//Day of the year
+//extension Date {
+//    var dayOfYear: Int {
+//        return Calendar.current.ordinality(of: .day, in: .year, for: self)!
+//    }
+//}
+//= = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+
+//func dayOfProgrammer(year: Int) -> String {
+//    // Write your code here
+//    var date = ""
+//    if(year>1918){
+//        date = ""
+//    }else if(year<1918){
+//        date = ""
+//    }else{
+//        date = ""
+//    }
+//    return date
+//}
+
+//func getDateFromyear(day: Int,year: Int) ->String{
+//    var cal: Calendar = Calendar.current
+//    let firstDayOfTheYear  = Calendar.current.dateWithEra(1, year: Calendar.curren.component(.CalendarUnitYear, fromDate: NSDate()), month: 1, day: 1, hour: 0, minute: 0, second: 0, nanosecond: 0)!   // "Jan 1, 2015, 12:00 AM"
+//    let date = Date() // now
+//    let firstDayOfYear = Calendar.current.ordinality(of: .day, in: .year, for: date)
+    
+//    Calendar.current.ordinality(of: .day, in: .year, for: self)!
+    
+    
+//return ""
+//}
+
+//print(dayOfProgrammer(year: 1918))
+
+////256th day of the year
+//private func isLeapYear(_ year: Int) -> Bool {
+//    return (year % 400 == 0) || ((year % 4 == 0) && (year % 100 != 0)) ? true : false
+//}
+//
+//private func isJulianLeapYear(_ year: Int) -> Bool {
+//    return (year % 4 == 0) ? true : false
+//}
+//
+//private func dayOfProgrammer(year: Int) -> String {
+//
+//    var months = [("01", 31), ("02", 28), ("03", 31), ("04", 30), ("05", 31), ("06", 30),
+//                    ("07", 31), ("08", 31), ("09", 30), ("10", 31), ("11", 30), ("12", 31)]
+//
+//    switch year {
+//    case 1700..<1918:
+//        months[1] = isJulianLeapYear(year) ? ("02", 29) : ("02", 28)
+//    case 1918:
+//        months[1] = ("02", 15)
+//    default:
+//        months[1] = isLeapYear(year) ? ("02", 29) : ("02", 28)
+//    }
+//
+//    var sum = 0
+//    for month in months {
+//        if sum + month.1 < 256 {
+//            sum += month.1
+//        } else {
+//            return "\(256 - sum).\(month.0).\(year)"
+//        }
+//    }
+//
+//    return ""
+//}
+//
+//print(dayOfProgrammer(year: 2022))
+
+//= = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+
+//Sum of first n Odd Numbers
+ //Sn = n^2
+//sum of first 5 odd numbers  = S5 = 5^2 = 5^2 = 25
+//let sum5 = pow(Decimal(5), 2)
+//print("Square of 5:\(sum5)")
+
+
+//9541433876
+
+//sum of odd up to n
+let n = 20
+var m = 0
+if n%2 == 0 {
+    m = n/2
+}else{
+    m = (n/2) + 1
+}
+
+let sum = pow(Decimal(m), 2)
+//print("Sum:\(sum)")
+
+
+//Sum of first n Even Numbers
+//Sn = n(n+1)
+let sum = 5*(5+1)
+print(sum)
+
+
+
 print("\n--------------\nAnand Upadhyay\n--------------\n")
+
+
+
+
 
